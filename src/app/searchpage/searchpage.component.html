@@ -1,0 +1,42 @@
+<div class="container text-center">
+  <h1>{{ title }}</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="search-hero">
+      <input
+        class="form-control"
+        type="text"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="ابحث باستخدام الاسم او الكود او رقم الجوال"
+      />
+      <button class="w3-button" (click)="tabToggle(2)">اضافة</button>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>الكود</th>
+          <th>الاسم</th>
+          <th>رقم الجوال</th>
+        </tr>
+      </thead>
+
+      <tfoot>
+        <tr *ngFor="let hero of heroes | filter: searchText">
+          <td>{{ hero.id }}</td>
+
+          <td>{{ hero.name }}</td>
+          <td>{{ hero.country }}</td>
+          <button class="w3-button" (click)="tabToggle(2)">تعديل</button>
+
+          <button class="w3-button" (click)="tabToggle(5)">حذف</button>
+        </tr>
+      </tfoot>
+    </table>
+    <div *ngIf="showTab == 2" class="box1-content">
+      <app-tepm1></app-tepm1>
+    </div>
+  </div>
+</div>

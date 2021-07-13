@@ -1,0 +1,93 @@
+﻿<img
+  class="img-responsive"
+  src="assets/Group 75.svg"
+  width="140px"
+  height="700"
+  style="position: absolute; bottom: 250px; right: 6px"
+/>
+<div class="card-body">
+  <img
+    class="img-responsive"
+    src="assets/desk.svg"
+    width="230px"
+    height="420px;"
+    style="
+      position: absolute;
+      top: 80px;
+      left: 190px;
+      background-color: #094f8d;
+      background-size: 30px;
+    "
+  />
+</div>
+
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username" class="text-align-left"> المستخدم</label>
+          <input
+            type="text"
+            formControlName="username"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">كلمة السر</label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="date">التاريخ</label>
+          <br />
+          <input
+            class="form-control"
+            type="datetime-local"
+            placeholder="Access duration"
+            name="date"
+            value="2020-11-16T20:00"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="shift">رقم الفترة</label>
+
+          <select class="form-control">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+          </select>
+        </div>
+
+        <button [disabled]="loading" class="btn btn-primary">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Login
+        </button>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+          {{ error }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

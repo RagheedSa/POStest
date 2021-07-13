@@ -1,0 +1,228 @@
+﻿<img
+  class="img-responsive"
+  src="assets/Group 75.svg"
+  width="140px"
+  height="700"
+  style="position: absolute; bottom: 250px; right: 6px"
+/>
+  <style>
+    /* Create two columns/boxes that floats next to each other */
+    mat-tree  {
+  float: left;
+  width: 20%;
+  padding: 10px;
+border: 1px solid rgb(224, 223, 223);
+border-radius: 5px;
+margin-right: 9px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+/*
+ * This padding sets alignment of the nested nodes.
+ */
+.example-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 40px;
+}
+
+/*
+ * Padding for leaf nodes.
+ * Leaf nodes need to have padding so as to align with other non-leaf nodes
+ * under the same parent.
+ */
+.example-tree div[role=group] > .mat-tree-node {
+  padding-left: 40px;
+}
+
+  </style>
+
+<!--
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Functions </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+            <mat-action-row>
+
+              <p>
+                <button
+                  onclick="document.getElementById('menu').style.display='block'"
+                  class="w3-button_dania"
+                  (click)="tabToggle(2)"
+                >
+                  Temp1</button
+                ><br />
+                <button
+                  onclick="document.getElementById('contact').style.display='block'"
+                  class="w3-button_dania"
+                  (click)="tabToggle(3)"
+                >
+                  Temp2</button
+                ><br />
+                <button
+                  onclick="document.getElementById('contact').style.display='block'"
+                  class="w3-button_dania"
+                  (click)="tabToggle(4)"
+                >
+                  Temp3</button
+                ><br />
+                <button
+                  onclick="document.getElementById('contact').style.display='block'"
+                  class="w3-button_dania"
+                  (click)="tabToggle(5)"
+                >
+                  Scrn1</button
+                ><br />
+                <button
+                  onclick="document.getElementById('contact').style.display='block'"
+                  class="w3-button_dania"
+                  (click)="tabToggle(6)"
+                >
+                  Scrn2</button
+                ><br />
+                <button
+                  onclick="document.getElementById('contact').style.display='block'"
+                  class="w3-button_dania"
+                  (click)="tabToggle(7)"
+                >
+                  Scrn3</button
+                ><br />
+                <button
+                  onclick="document.getElementById('contact').style.display='block'"
+                  class="w3-button_dania"
+                  (click)="tabToggle(8)"
+                >
+                  invoice</button
+                ><br />
+              </p>
+            </mat-action-row>
+          </mat-panel-description>
+        </mat-expansion-panel>
+      </mat-accordion>
+-->
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+        <!-- This is the tree node template for leaf nodes -->
+        <!-- There is inline padding applied to this node using styles.
+          This padding value depends on the mat-icon-button width. -->
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+            {{node.name}}
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+            <div class="mat-tree-node">
+              <button mat-icon-button matTreeNodeToggle
+                      [attr.aria-label]="'Toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+             {{node.name}}
+            </div>
+
+            <!-- There is inline padding applied to this div using styles.
+                This padding value depends on the mat-icon-button width.  -->
+            <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+                role="group">
+              <ng-container matTreeNodeOutlet></ng-container>
+          </div>
+
+      <a class="nav-item nav-link"    (click)="tabToggle(1)">  الصفحة الرئيسية    </a>
+
+      <a class="nav-item nav-link"    (click)="tabToggle(2)">  مندوبي المبيعات    </a>
+      <a class="nav-item nav-link"    (click)="tabToggle(3)">  مبيعات آجلة   </a>
+      <a class="nav-item nav-link"    (click)="tabToggle(9)"> بحث   </a>
+      <a class="nav-item nav-link"    (click)="tabToggle(4)"> فئات الأصناف   </a>
+
+      <a class="nav-item nav-link" (click)="logout()">  خروج    </a>
+
+        </mat-nested-tree-node>
+      </mat-tree>
+
+
+
+      <div class="card mt-4">
+    <h4 class="card-header"></h4>
+
+
+    <div class="card-body">
+
+      <!--
+        <p>You're logged in</p>
+        <p>Your role is: <strong>{{user.role}}</strong>.</p>
+        <p>This page can be accessed by <u>all authenticated users</u>.</p>
+        <p class="mb-1">Current user from secure api end point:</p>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="userFromApi">
+            <li>{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
+        </ul>
+      -->
+
+        <div *ngIf="showTab == 1" class="box1-content">
+                <img
+                  class="img-responsive"
+                  src="assets/Alattar.jpg"
+                  width="100%"
+                  style="
+                    background-size: cover;
+                    background-color: rgba(255, 255, 255, 0.6);
+                    background-blend-mode: lighten;
+                  "
+                />
+
+
+
+          </div>
+          <div *ngIf="showTab == 2" class="box1-content">
+            <app-tepm1></app-tepm1>
+          </div>
+          <div *ngIf="showTab == 3" class="box2-content">
+            <app-temp2></app-temp2>
+          </div>
+          <div *ngIf="showTab == 4" class="box3-content">
+            <app-temp3></app-temp3>
+          </div>
+          <div *ngIf="showTab == 5" class="box4-content">
+            <app-scrn1></app-scrn1>
+          </div>
+          <div *ngIf="showTab == 6" class="box5-content">
+            <app-scrn2></app-scrn2>
+          </div>
+          <div *ngIf="showTab == 7" class="box5-content">
+            <app-scrn3></app-scrn3>
+          </div>
+          <div *ngIf="showTab == 8" class="box5-content">
+            <app-sales-inv></app-sales-inv>
+          </div>
+            <div *ngIf="showTab == 9" class="box5-content">
+              <app-searchpage></app-searchpage>
+            </div>
+
+          </div>
+        </div>
+
+  <!-- translation: translation pipe -->
+  <!--<p>{{ 'demo.text' | translate }}</p>-->
+
+  <!-- translation: directive (key as attribute)-->
+  <!--<p [translate]="'demo.text'"></p>-->
+
+  <!-- translation: directive (key as content of element) -->
+  <!--<p translate>demo.text</p>-->
